@@ -29,7 +29,7 @@ class Email:
     def modificaCont (self):
         aux= input('Ingrese su contrasena: ')
         while self.__contrasena != aux:
-            aux= input('Contrasena incorrecta, intente nuevamente:' )
+            aux= input('Contrasena incorrecta, intente nuevamente: ')
         self.__contrasena= input('Ingrese su nueva contrasena: ')
     
         

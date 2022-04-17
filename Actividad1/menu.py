@@ -10,7 +10,6 @@ class Menu :
     def getOpcion (self):
         return self.__op
     def manejoMenu (self,op,auxCorreo):
-        # dic = { '1': self.opcion1(auxCorreo), '2': self.opcion2(auxCorreo), '3': self.opcion3(), '4': self.Salir() }
         if op == 1:
             self.opcion1(auxCorreo)
         elif op == 2:
