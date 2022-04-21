@@ -5,67 +5,69 @@ import os
 
 from ViajeroFrecuente import ViajeroFrecuente
 
+
 class ManejadorViajerosFrecuentes:
+
+    __listaViajeros: list[ViajeroFrecuente]
     
-    def menu(self,listaViajeros:list[ViajeroFrecuente]):
+    def menu(self):
         op= int(input("MENU PRINCIPAL -------------- \n 1 - Cargar Archivo\n 2 - Consultar sobre un viajero \n 3 - Salir \n OPCION: "))
         while (op!=3):
             if op==1:
-                self.cargarArchivo(listaViajeros)
+                self.cargarArchivo()
             elif op==2:
-                self.opcionesViajero(listaViajeros)
+                self.opcionesViajero()
             else:
                 op=3
             op= int(input("MENU PRINCIPAL -------------- \n 1 - Cargar Archivo\n 2 - Consultar sobre un viajero \n 3 - Salir \n---NUEVA OPCION PRINCIPAL: "))
 
-    def cargarArchivo(self,listaViajeros:list):
-        listaViajeros=[]
+    def cargarArchivo(self):
+        self.__listaViajeros=[]
         archivo = open('ArchivoViajeros.csv')
         reader = csv.reader(archivo,delimiter=',')
         for viajero in reader:
             nuevoViajero= ViajeroFrecuente(viajero[0],viajero[1],viajero[2],viajero[3],viajero[4])
-            listaViajeros.append(nuevoViajero)
-            # print(listaViajeros[0].getNumViajero())
+            self.__listaViajeros.append(nuevoViajero)
+            print(nuevoViajero)
         print("\n-----Archivo cargado------\n")
         os.system("Pause")
         os.system("cls")
 
-    def opcionesViajero(self,listaViajeros):
-        print(listaViajeros[0].getNumViajero())
+    def opcionesViajero(self):
+        print(self.__listaViajeros[0].getNumViajero())
         idViajero= int(input("Ingrese numero de viajero a buscar: "))
-        respuesta=int(self.buscarViajero(listaViajeros,idViajero))
+        respuesta=int(self.buscarViajero(idViajero))
         if(respuesta==-1):
             print("Viajero no encontrado")
         else:
-            opciones= {'1': listaViajeros[respuesta].cantidadTotalMillas() , '2': listaViajeros[respuesta].acumularMillas(millas) , '3' : listaViajeros[respuesta].canjearMillas(millas) }
+            opciones= {'1': self.__listaViajeros[respuesta].cantidadTotalMillas , '2': self.__listaViajeros[respuesta].acumularMillas , '3' : self.__listaViajeros[respuesta].canjearMillas }
             op=int(input("\n 1 - Consultar cantidad de millas \n 2 - Acumular millas \n 3 - Canjear millas \n 4 - Salir \n OPCION: "))
             
             while (op != 4):
                 if op==1:
-                    res=opciones.get(op,error)
-                    print("\nCantidad de millas acumuladas: "+ res)
+                    print("\nCantidad de millas acumuladas: ", self.__listaViajeros[respuesta].cantidadTotalMillas())
                 elif op==2:
-                    millas= int("\nIngrese millas a acumular: ")
-                    res=opciones.get(op,error)
-                    print("\nNueva cantidad de millas acumuladas: "+ res)
+                    millas= int(input("\nIngrese millas a acumular: "))
+                    print("\nNueva cantidad de millas acumuladas: ", self.__listaViajeros[respuesta].acumularMillas(millas))
                 elif op==3:
-                    millas= int("\nIngrese millas a canjear: ")
-                    res=opciones.get(op,error)
+                    millas= int(input("\nIngrese millas a canjear: "))
+                    res= self.__listaViajeros[respuesta].canjearMillas(millas)
                     if res != None:
-                        print("\nMillas restantes: "+ res)
+                        print("\nMILLAS CANJEADAS---- \nMillas restantes: ", self.__listaViajeros[respuesta].cantidadTotalMillas())
                 op=int(input("\n 1 - Consultar cantidad de millas \n 2 - Acumular millas \n 3 - Canjear millas \n 4 - Salir \n----- INGRESE NUEVA OPCION: "))
         os.system("Pause")
         os.system("cls")
             
-    def buscarViajero(self,listaViajeros,auxId:int):
+    def buscarViajero(self,auxId):
         i=0
         b= True
-        while (i<len(listaViajeros)and(b==True)):
-            print(listaViajeros[2])
-            aux=listaViajeros[i].getNumViajero
+        while ((i<len(self.__listaViajeros)) and (b==True)):
+            aux=self.__listaViajeros[i].getNumViajero()
             print("Valor de aux: ",aux)
-            if(aux == auxId):
-                print(listaViajeros[i])
+            print("Valor de auxId: ",auxId)
+            auxId= int(auxId)
+            aux= int(aux)
+            if aux == auxId :
                 b=False
             else:
                 i+=1

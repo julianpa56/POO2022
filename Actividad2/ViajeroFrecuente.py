@@ -1,23 +1,23 @@
 
 
 class ViajeroFrecuente :
-    __num_viajero: int
-    __dni: int
-    __nombre: str
-    __apellido: str
-    __millas_acum: int
+    __num_viajero= 0
+    __dni= 0
+    __nombre= ''
+    __apellido= ''
+    __millas_acum= 0
 
-    def __init__(self,auxNumViajero: int,auxDni: int,auxNom: str,auxApe: str,auxMillAcum: int) -> None:
-        self.__num_viajero= auxNumViajero
-        self.__dni= auxDni
+    def __init__(self,auxNumViajero,auxDni,auxNom,auxApe,auxMillAcum) -> None:
+        self.__num_viajero= int(auxNumViajero)
+        self.__dni= int(auxDni)
         self.__nombre= auxNom
         self.__apellido= auxApe
-        self.__millas_acum= auxMillAcum
+        self.__millas_acum= int(auxMillAcum)
 
     def cantidadTotalMillas(self) -> int:
         return self.__millas_acum
 
-    def acumularMillas(self,auxNuevasMillas:int) -> int:
+    def acumularMillas(self,auxNuevasMillas) -> int:
         self.__millas_acum += auxNuevasMillas
         return self.__millas_acum
 
