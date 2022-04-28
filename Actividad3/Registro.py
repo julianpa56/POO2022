@@ -1,14 +1,14 @@
 
 
 class Registro :
-    __temperatura=0
-    __humedad=0
-    __presion_at=0
+    __temperatura=0.0
+    __humedad=0.0
+    __presion_at=0.0
 
-    def __init__(self,temp,hum,pre) -> None:
-        self.__temperatura=int(temp)
-        self.__humedad=int(hum)
-        self.__presion_at=int(pre)
+    def __init__(self,temp,hum,pre):
+        self.__temperatura=float(temp)
+        self.__humedad=float(hum)
+        self.__presion_at=float(pre)
 
     def getTemp(self):
         return self.__temperatura

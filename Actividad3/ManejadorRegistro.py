@@ -1,23 +1,47 @@
 import csv
+import os
 
 from Registro import Registro
 
 
 class ManejadorRegistro :
 
-    __tabla: Registro = [30][24]
+    __tabla=[]
+
+    def __init__(self) -> None:
+        for i in range(30):
+            a=[]
+            self.__tabla.append(a)
 
     def menuPrincipal(self):
-        pass
+        menuP={'1': self.cargaDatos , '2': self.menuSecundario}
+        op=(str(input("\n1- CARGAR DATOS \n2- MENU SECUNDARIO \n -- PARA SALIR PRESIONE OTRA TECLA \n---- OPCION: ")))
+        while(op=='1' or op=='2'):
+            func= menuP.get(op)
+            print(func)
+            func()
+            op=(str(input("\n1- CARGAR DATOS \n2- MENU SECUNDARIO \n -- PARA SALIR PRESIONE OTRA TECLA \n---- OPCION: ")))
+
 
     def cargaDatos(self):
-        archivo= open("Archivo.csv")
-        reader= csv.reader(archivo)
+        archivo= open("mes.csv",)
+        reader= csv.reader(archivo,delimiter=',')
         for reg in reader:
-            self.__tabla[reg[0]][reg[1]]= Registro(reg[2],reg[3],reg[4])
+            t=float(reg[2])
+            h=float(reg[3])
+            p=float(reg[4])
+            # print()
+            aux= Registro(t,h,p)
+            self.__tabla[int(reg[0])-1].append(aux)
         
     def menuSecundario(self):
-        pass
+        menuP={'1': self.maxYMin , '2': self.tempPromedio , '3': self.listarDia}
+        op=(str(input("\n1- Mostrar para cada variable el día y hora de menor y mayor valor \n2- Indicar la temperatura promedio mensual por cada hora \n3- Indicar la temperatura promedio mensual por cada hora \n -- PARA SALIR PRESIONE OTRA TECLA \n---- OPCION: ")))
+        while(op=='1' or op=='2' or op=='3'):
+            func= menuP.get(op)
+            func()
+            op=(str(input("\n1- Mostrar para cada variable el día y hora de menor y mayor valor \n2- Indicar la temperatura promedio mensual por cada hora \n3- Indicar la temperatura promedio mensual por cada hora \n -- PARA SALIR PRESIONE OTRA TECLA \n---- OPCION: ")))
+
     
     def maxYMin(self):
         auxTempMayor=0
@@ -61,4 +85,21 @@ class ManejadorRegistro :
         print("\nEl dia {}, hora {} se registro la menor humedad que fue de {}°".format(minHum[0],minHum[1],minHum[2]))
         print("\n\nREGISTROS DE PRESION ATMOSFERICA -------------------------------------")
         print("\nEl dia {}, hora {} se registro la mayor presion atmosferica que fue de {}°".format(maxPre[0],maxPre[1],maxPre[2]))
-        print("\nEl dia {}, hora {} se registro la menor presion atmosferica que fue de {}°".format(minPre[0],minPre[1],minPre[2]))            
+        print("\nEl dia {}, hora {} se registro la menor presion atmosferica que fue de {}°".format(minPre[0],minPre[1],minPre[2]))
+        os.system("Pause")
+        os.sysyem("cls")
+
+    def tempPromedio(self):
+        arrePromedios= list[24]
+        for i in range(24):
+            for j in range(30):
+                arrePromedios[i]+= self.__tabla[j][i].getTemperatura()
+        i=0
+        for i in range(24):
+            arrePromedios[i]/=30
+            print("\nLa temperatura promedio mensual a las {}hs fue de {}°".format(i,round(arrePromedios[i],2)))
+    
+    def listarDia(self,dia):
+        print("\n{:^10}{:^10}{:^10}{:^10}\n\n".format('Hora','Temperatura','Humedad','Presion'))
+        for j in range(24):
+            print("{:^10}{:^10}{:^10}{:^10}".format(j,self.__tabla[dia-1][j].getTemp(),self.__tabla[dia-1][j].getHum(),self.__tabla[dia-1][j].getPres()))

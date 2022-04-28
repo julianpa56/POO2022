@@ -1,3 +1,8 @@
 
+from ManejadorRegistro import ManejadorRegistro
+
+
 if __name__=='__main__':
-    print("hola")
+    manejador= ManejadorRegistro()
+    manejador.menuPrincipal()
+    
