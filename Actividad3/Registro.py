@@ -1,9 +1,9 @@
 
 
 class Registro :
-    __temperatura=0.0
-    __humedad=0.0
-    __presion_at=0.0
+    __temperatura=0.00
+    __humedad=0.00
+    __presion_at=0.00
 
     def __init__(self,temp,hum,pre):
         self.__temperatura=float(temp)
@@ -18,3 +18,6 @@ class Registro :
 
     def getPres(self):
         return self.__presion_at
+
+    def __str__(self) -> str:
+        return ("{}---{}---{}".format(self.__temperatura,self.__humedad,self.__presion_at))
