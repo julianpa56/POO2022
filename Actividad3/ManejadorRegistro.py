@@ -24,7 +24,7 @@ class ManejadorRegistro :
 
 
     def cargaDatos(self):
-        archivo= open("mes.csv",)
+        archivo= open("mes.csv")
         reader= csv.reader(archivo,delimiter=',')
         for reg in reader:
             t=float(reg[2])
