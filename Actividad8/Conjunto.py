@@ -46,33 +46,33 @@ class Conjunto :
         nuevoConjunto=[]
         conjA=self.__conjunto
         conjB=otroConjunto.getElementos()
-        b=False
+        c=0
         for a in conjA:
-            print(a)
             for b in conjB:
                 if a == b:
-                    b=True
-            if b==False:
+                    c=1
+            if c==0:
+                print(a)
                 nuevoConjunto.append(a)
-            b=False
+            c=0
         return nuevoConjunto
 
     def __eq__(self,otroConjunto):
-        if (len(self.__conjunto.getElementos())!= len(otroConjunto.getElementos())):
+        conjA=self.__conjunto
+        conjB=otroConjunto.getElementos()
+        if (len(conjA)!= len(conjB)):
             return False
         else:
-            a=self.__conjunto
-            a.sort(reverse=False)
-            b=otroConjunto
-            b.sort(reverse=False)
+            conjA.sort(reverse=False)
+            conjB.sort(reverse=False)
             i=0
             c=True
-            while (i<len(a) and c):
-                if(a[i]!=b[i]):
+            while (i<len(conjA) and c):
+                if( conjA[i] != conjB[i] ):
                     c=False
                 else:
                     i+=1
-            return b
+            return c
 
     def getElementos(self):
         return self.__conjunto
