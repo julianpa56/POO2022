@@ -28,14 +28,13 @@ class ManejadorMedicamento:
                 self.__listaMedicamentos.append(nuevoMedicamento)
 
     def buscarMedicamento(self,idCama):
-        print("{:10}{:10}{:10}{:10}".format("Medicamento/monodroga","Presentacion","Cantidad","Precio"))
+        print("{:10}{:70}{:50}{:20}".format("Medicamento/monodroga","Presentacion","Cantidad","Precio"))
         total=0.0
         
         for medicamento in self.__listaMedicamentos:
             aux=medicamento.getIdCama()
             aux=int(aux)
             if aux ==idCama:
-                cantidad=self.__listaMedicamentos.count(medicamento)
-                total+=medicamento.getPrecio()*cantidad
-                print("{:10}{:10}{:10}{:10}".format((medicamento.getNombre()+'/'+medicamento.getMonodroga()),medicamento.getPresentacion(),cantidad,medicamento.getPrecio()))
-            print("Total adeudado: {:40}".format(total))
+                total+=medicamento.getPrecio()
+                print("{:10}{:70}{:50}{:20}".format((medicamento.getNombre()+'/'+medicamento.getMonodroga()),medicamento.getPresentacion(),medicamento.getCantAplicada(),medicamento.getPrecio()))
+        print("Total adeudado: {:40}".format(total))

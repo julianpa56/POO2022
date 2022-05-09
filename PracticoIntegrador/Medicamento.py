@@ -32,3 +32,6 @@ class Medicamento:
 
     def getPrecio(self):
         return self.__precioTotal
+
+    def getCantAplicada(self):
+        return self.__cantidadAplicada

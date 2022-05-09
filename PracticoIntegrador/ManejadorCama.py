@@ -62,7 +62,6 @@ class ManejadorCama:
         self.__arreCamas[indice-1].setEstado(False)
         self.__arreCamas[indice-1].setNombre(None)
         self.__arreCamas[indice-1].setFechaAlta(fecha)
-        print('La fecha de alta se actualizo con exito!')
 
     def listarPacientes(self,diag):
         for paciente in self.__arreCamas:

@@ -15,6 +15,8 @@ if __name__=='__main__':
     if idC==None:
         print("-- no se encontro a paciente")
     else:
+        fecha=input("Ingrese fecha de alta en formato DD/MM/AAAA: ")
+        manejadorCamas.darAlta(fecha,idC)
         manejadorMedicamentos.buscarMedicamento(idC)
 
     diag=input("Ingrese diagnostico a buscar: ")
