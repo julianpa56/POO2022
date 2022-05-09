@@ -35,3 +35,6 @@ class Medicamento:
 
     def getCantAplicada(self):
         return self.__cantidadAplicada
+
+    def __str__(self) -> str:
+        return ("id Medicamento: {} - Nombre: {}".format(self.__idMedicamento,self.__nombreComercial))

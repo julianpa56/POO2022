@@ -26,6 +26,7 @@ class ManejadorMedicamento:
 
                 nuevoMedicamento= Medicamento(idCama,idMedicamento,nombreComercial,monodroga,presentacion,cantidadAplicada,precioTotal)
                 self.__listaMedicamentos.append(nuevoMedicamento)
+                print(nuevoMedicamento)
 
     def buscarMedicamento(self,idCama):
         print("{:10}{:70}{:50}{:20}".format("Medicamento/monodroga","Presentacion","Cantidad","Precio"))

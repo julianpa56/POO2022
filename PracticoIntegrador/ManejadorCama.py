@@ -30,7 +30,7 @@ class ManejadorCama:
                 alta=cama[6]
                 nuevaCama= Cama(idCama,nroHabitacion,estado,nombre,diagnostico,ingreso,alta)
                 self.agregar(nuevaCama)
-                print(self.__arreCamas[0])
+                print(nuevaCama)
 
     def agregar(self,nuevaCama:Cama):
         if self.__dimension == self.__cantidad:
