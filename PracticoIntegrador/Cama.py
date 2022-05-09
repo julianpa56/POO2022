@@ -48,4 +48,7 @@ class Cama:
         self.__nombrePaciente=nuevoNombre
 
     def setFechaAlta(self,fechaAlta):
-        self.__fechaAlta= date(fechaAlta)
+        self.__fechaAlta= fechaAlta
+
+    def __str__(self) -> str:
+        return ("id: {} - nombre: {}".format(self.__idCama,self.__nombrePaciente))

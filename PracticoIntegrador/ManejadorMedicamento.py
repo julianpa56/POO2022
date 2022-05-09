@@ -5,7 +5,7 @@ from Medicamento import Medicamento
 
 
 class ManejadorMedicamento:
-    __listaMedicamentos=[Medicamento]
+    __listaMedicamentos=[]
 
 
     def leerArchivo(self):
@@ -32,8 +32,9 @@ class ManejadorMedicamento:
         total=0.0
         
         for medicamento in self.__listaMedicamentos:
-            
-            if medicamento.getIdCama() ==idCama:
+            aux=medicamento.getIdCama()
+            aux=int(aux)
+            if aux ==idCama:
                 cantidad=self.__listaMedicamentos.count(medicamento)
                 total+=medicamento.getPrecio()*cantidad
                 print("{:10}{:10}{:10}{:10}".format((medicamento.getNombre()+'/'+medicamento.getMonodroga()),medicamento.getPresentacion(),cantidad,medicamento.getPrecio()))
