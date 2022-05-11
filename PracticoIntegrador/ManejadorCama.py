@@ -30,7 +30,8 @@ class ManejadorCama:
                 alta=cama[6]
                 nuevaCama= Cama(idCama,nroHabitacion,estado,nombre,diagnostico,ingreso,alta)
                 self.agregar(nuevaCama)
-                print(nuevaCama)
+        print("Archivo camas cargado")
+        archivo.close()
 
     def agregar(self,nuevaCama:Cama):
         if self.__dimension == self.__cantidad:
@@ -64,6 +65,12 @@ class ManejadorCama:
         self.__arreCamas[indice-1].setFechaAlta(fecha)
 
     def listarPacientes(self,diag):
+        bandera= True
         for paciente in self.__arreCamas:
-            if paciente.getDiagnostico()==diag and paciente.getEstado()==True:
-                print("\nPaciente: {} | Habitacion: {} | Diagnostico: {} | Fecha de Internacion: {}".format(paciente.getNombre(),paciente.getHabitacion(),paciente.getDiagnostico(),paciente.getFechaInternacion()))
+            diagnostico=paciente.getDiagnostico()
+            estadoCama=paciente.getEstado()
+            if diagnostico==diag and estadoCama==True:
+                print("\nPaciente: {},{} | Habitacion: {} | Diagnostico: {} | Fecha de Internacion: {}".format(paciente.getNombre()[0],paciente.getNombre()[1],paciente.getHabitacion(),paciente.getDiagnostico(),paciente.getFechaInternacion()))
+                bandera= False
+        if bandera:
+            print("\nNo se encontro concidencia o la cama ya no se encontraba ocupada")
